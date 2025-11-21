@@ -1,12 +1,21 @@
 # Proyecto---Bash
-Descripción del ProyectoEste proyecto consiste en la implementación de un intérprete de comandos interactivo (Shell) para sistemas Linux, desarrollado en lenguaje C.El objetivo principal es demostrar el manejo de bajo nivel del sistema operativo, utilizando exclusivamente llamadas al sistema (System Calls) para la gestión de procesos, archivos y memoria, prescindiendo de librerías de alto nivel para las operaciones críticas.CaracterísticasEl Shell soporta las siguientes funcionalidades:1. Comandos Internos (Built-in)Estos comandos se ejecutan dentro del propio proceso del Shell sin crear procesos hijos:cd <dir>: Cambia el directorio actual de trabajo.pwd: Muestra la ruta absoluta del directorio actual.mkdir <nombre>: Crea un nuevo directorio con permisos 0755.rm <archivo>: Elimina archivos (usando unlink) o directorios vacíos (usando rmdir).mv <origen> <destino>: Renombra o mueve archivos y directorios.cp <origen> <destino>: Copia archivos bloque a bloque.cat <archivo>: Lee y muestra el contenido de un archivo en salida estándar.ls: Lista los archivos del directorio actual (omite . y ..).exit: Termina la ejecución del Shell.2. Ejecución de Programas ExternosPermite ejecutar cualquier programa binario del sistema (como vim, nano, gcc, grep, etc.) mediante la creación de procesos hijos.3. Funcionalidades AvanzadasRedirección de Entrada (<): Permite leer la entrada de un comando desde un archivo.Redirección de Salida (>): Permite guardar la salida de un comando en un archivo (sobrescribe si existe).Ejecución en Background (&): Permite lanzar procesos en segundo plano sin bloquear la terminal, permitiendo al usuario seguir escribiendo comandos inmediatamente.Arquitectura TécnicaEl proyecto se basa en los siguientes conceptos de Sistemas Operativos:Gestión de Procesos: Uso de fork() para duplicar el proceso y execvp() para reemplazar la imagen de memoria con el nuevo programa. Se utiliza waitpid() para la sincronización del proceso padre (Shell) con los hijos.System Calls I/O: Se utilizan read() y write() para toda la entrada/salida, evitando el uso de printf o scanf para cumplir con los requisitos de bajo nivel.Manipulación de File Descriptors: Uso de dup2() para redirigir STDIN_FILENO y STDOUT_FILENO al manejar los operadores > y <.Sistemas de Archivos: Uso directo de syscalls como stat, open, unlink, rename, mkdir y opendir/readdir.RequisitosSistema Operativo: Linux (Ubuntu, Debian, Fedora) o entorno compatible (WSL, Replit, VirtualBox).Compilador: GCC (GNU Compiler Collection).Compilación y EjecuciónCompilar el proyecto:Abrir una terminal y ejecutar:gcc -o myshell myshell.c
-Iniciar el Shell:./myshell
-Limpiar (Opcional):Para borrar el ejecutable:rm myshell
-Ejemplos de UsoUna vez dentro de mi_shell>, puedes probar los siguientes comandos:Gestión de Archivos:mi_shell> mkdir proyecto
-mi_shell> cd proyecto
-mi_shell> cp ../archivo.txt copia.txt
-mi_shell> ls
-Redirección:mi_shell> ls > lista_archivos.txt
-mi_shell> cat lista_archivos.txt
-Ejecución Externa y Background:mi_shell> vim codigo.c
-mi_shell> gcc codigo.c & 
+
+## Descripción del Proyecto
+Este proyecto consiste en la implementación de un intérprete de comandos interactivo (Shell) para sistemas Linux. Ha sido desarrollado en lenguaje C siguiendo estrictos estándares de ingeniería de sistemas.
+El objetivo principal es demostrar el dominio de la programación a bajo nivel, utilizando exclusivamente **Llamadas al Sistema (System Calls)** para la gestión de procesos, manipulación de archivos y control de memoria, evitando el uso de librerías de alto nivel para las operaciones críticas del kernel.
+
+## ⚙️ Compilación y Ejecución
+
+Para compilar el código fuente y generar el binario ejecutable, abre una terminal en la carpeta del proyecto y ejecuta:
+
+```bash
+Comando,Uso,Descripción Técnica
+cd,cd <ruta>,Cambia el directorio de trabajo (chdir).
+pwd,pwd,Muestra la ruta absoluta actual (getcwd).
+mkdir,mkdir <nombre>,Crea un directorio con permisos 0755 (mkdir).
+rm,rm <target>,Elimina archivos (unlink) o directorios (rmdir).
+mv,mv <viejo> <nuevo>,Renombra o mueve archivos (rename).
+cp,cp <src> <dst>,"Copia binaria de archivos (open, read, write)."
+cat,cat <archivo>,Vuelca el contenido de un archivo a STDOUT.
+ls,ls,"Lista el directorio actual (opendir, readdir)."
+exit,exit,Cierra el descriptor de entrada y termina el proceso.
