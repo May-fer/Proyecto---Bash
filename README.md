@@ -2,7 +2,7 @@
 
 ## Descripción del Proyecto
 Este proyecto presenta la implementación de un intérprete de comandos interactivo (Shell) diseñado para entornos Linux y desarrollado íntegramente en lenguaje C. El propósito fundamental de este programa es ilustrar el funcionamiento interno de un sistema operativo mediante la aplicación práctica de conceptos de bajo nivel.
-Para cumplir con rigorosos estándares de ingeniería, el desarrollo se ha centrado en el uso exclusivo de Llamadas al Sistema (System Calls) para las operaciones críticas. Esto implica que la gestión de procesos, la manipulación de archivos y el control de memoria se realizan interactuando directamente con el Kernel, prescindiendo de las abstracciones que ofrecen las librerías estándar de alto nivel.
+El desarrollo se ha centrado en el uso exclusivo de Llamadas al Sistema (System Calls) para las operaciones críticas. Esto implica que la gestión de procesos, la manipulación de archivos y el control de memoria se realizan interactuando directamente con el Kernel, prescindiendo de las abstracciones que ofrecen las librerías estándar de alto nivel.
 
 ## Funcionalidades del Sistema
 
