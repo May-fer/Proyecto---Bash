@@ -1,21 +1,45 @@
 # Proyecto---Bash
 
 ## Descripción del Proyecto
-Este proyecto consiste en la implementación de un intérprete de comandos interactivo (Shell) para sistemas Linux. Ha sido desarrollado en lenguaje C siguiendo estrictos estándares de ingeniería de sistemas.
-El objetivo principal es demostrar el dominio de la programación a bajo nivel, utilizando exclusivamente **Llamadas al Sistema (System Calls)** para la gestión de procesos, manipulación de archivos y control de memoria, evitando el uso de librerías de alto nivel para las operaciones críticas del kernel.
+Este proyecto presenta la implementación de un intérprete de comandos interactivo (Shell) diseñado para entornos Linux y desarrollado íntegramente en lenguaje C. El propósito fundamental de este programa es ilustrar el funcionamiento interno de un sistema operativo mediante la aplicación práctica de conceptos de bajo nivel.
+Para cumplir con rigorosos estándares de ingeniería, el desarrollo se ha centrado en el uso exclusivo de Llamadas al Sistema (System Calls) para las operaciones críticas. Esto implica que la gestión de procesos, la manipulación de archivos y el control de memoria se realizan interactuando directamente con el Kernel, prescindiendo de las abstracciones que ofrecen las librerías estándar de alto nivel.
 
-## ⚙️ Compilación y Ejecución
+## Funcionalidades del Sistema
 
-Para compilar el código fuente y generar el binario ejecutable, abre una terminal en la carpeta del proyecto y ejecuta:
+- Comandos Integrados (Built-in):
 
 ```bash
-Comando,Uso,Descripción Técnica
-cd,cd <ruta>,Cambia el directorio de trabajo (chdir).
-pwd,pwd,Muestra la ruta absoluta actual (getcwd).
-mkdir,mkdir <nombre>,Crea un directorio con permisos 0755 (mkdir).
-rm,rm <target>,Elimina archivos (unlink) o directorios (rmdir).
-mv,mv <viejo> <nuevo>,Renombra o mueve archivos (rename).
-cp,cp <src> <dst>,"Copia binaria de archivos (open, read, write)."
-cat,cat <archivo>,Vuelca el contenido de un archivo a STDOUT.
-ls,ls,"Lista el directorio actual (opendir, readdir)."
-exit,exit,Cierra el descriptor de entrada y termina el proceso.
+cd : 
+Modifica el directorio de trabajo actual mediante la syscall chdir.
+
+pwd : 
+
+Obtiene y muestra la ruta absoluta del directorio actual usando getcwd.
+
+mkdir : 
+
+Solicita al sistema la creación de un nuevo directorio con permisos 0755.
+
+rm :
+
+Elimina inodos del sistema de archivos, ya sean ficheros (unlink) o directorios (rmdir).
+
+mv :
+
+Modifica la entrada de directorio para renombrar o mover archivos (rename).
+
+cp :
+
+Realiza una copia byte a byte de un archivo origen a un destino (open, read, write).
+
+cat :
+
+Lee secuencialmente un archivo y vuelca su contenido al descriptor de salida estándar.
+
+ls :
+
+Itera sobre las entradas del directorio actual para listar su contenido.
+
+exit :
+
+Cierra ordenadamente los descriptores abiertos y termina la ejecución del proceso.
