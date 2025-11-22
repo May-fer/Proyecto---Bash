@@ -13,7 +13,7 @@ CFLAGS = -Wall -Wextra -g
 TARGET = mybash
 
 # Nombre del archivo fuente
-SRC = Narvaez-Bash.c
+SRC = NarvaezM-Bash.c
 
 # Regla por defecto (se ejecuta si escribes solo 'make')
 all: $(TARGET)
